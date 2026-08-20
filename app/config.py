@@ -1,7 +1,5 @@
 from functools import lru_cache
 
-from typing import Literal
-
 from pydantic import Field, HttpUrl, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -11,7 +9,6 @@ class Settings(BaseSettings):
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
-    model_provider: Literal["openai_compatible", "litellm"] = "openai_compatible"
     model_base_url: HttpUrl | None = Field(default=None, description="Optional provider API base URL")
     model_api_key: str = ""
     model_name: str = Field(min_length=1)

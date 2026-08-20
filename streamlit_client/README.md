@@ -5,14 +5,14 @@ This UI sends every chat message to the local privacy middleware. It does not ca
 ## Configure the LLM
 
 1. Copy `.env.example` to `.env` in this folder.
-2. Set the model provider values:
-   - `MODEL_PROVIDER=litellm` lets LiteLLM select a provider from `MODEL_NAME`.
+2. Set the model connection values:
+   - LiteLLM selects the provider from `MODEL_NAME`; no provider-mode setting is required.
    - `MODEL_BASE_URL`: the provider base URL. For Ollama use `http://127.0.0.1:11434`; leave it blank when LiteLLM has a provider default.
    - `MODEL_NAME`: the provider-qualified model identifier, such as `ollama/llama3.2`.
    - `MODEL_API_KEY`: required for hosted providers; leave blank for a local provider such as Ollama when appropriate.
 3. Set `PRIVACY_API_BASE_URL` if the middleware is not on `http://127.0.0.1:8000`.
 
-Examples with `MODEL_PROVIDER=litellm`:
+Examples:
 
 | Provider | `MODEL_BASE_URL` | `MODEL_NAME` |
 | --- | --- | --- |
@@ -21,7 +21,7 @@ Examples with `MODEL_PROVIDER=litellm`:
 | Anthropic | provider default or its API URL | `anthropic/claude-sonnet-4-5` |
 | Gemini | provider default or its API URL | `gemini/gemini-2.5-flash` |
 
-For OpenAI-compatible endpoints that already expose `/v1/chat/completions`, set `MODEL_PROVIDER=openai_compatible` and use the provider's unprefixed model ID.
+For OpenAI-compatible endpoints, use the LiteLLM model identifier and set `MODEL_BASE_URL` when the endpoint is not discovered automatically.
 
 ## Run
 

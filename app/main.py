@@ -42,7 +42,6 @@ async def lifespan(app: FastAPI):
         settings.model_api_key,
         settings.model_name,
         settings.model_timeout_seconds,
-        settings.model_provider,
     )
     logger.info("middleware_started")
     yield
